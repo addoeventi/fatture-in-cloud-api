@@ -14,6 +14,6 @@ export class Richiesta {
     }
 
     public info(request: InfoRequest = { appId: this.appId, appKey: this.appkey }) : Promise<InfoResponse>{
-        return http.post(Global.ENDPOINT+"/richiesta/info", { body: request }) as Promise<InfoResponse>
+        return http.post(Global.ENDPOINT+"/richiesta/info", request) as Promise<InfoResponse>
     }
 }

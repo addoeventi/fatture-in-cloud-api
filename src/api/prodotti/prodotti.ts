@@ -5,7 +5,7 @@ import { Prodotto } from "../../models/prodotto";
 import { ProdottoRequest } from "./prodotti/prodotto-request";
 
 export class Prodotti {
-    
+
     private appId: string;
     private appkey: string;
 
@@ -14,23 +14,23 @@ export class Prodotti {
         this.appkey = appKey;
     }
 
-    public get(request: ProdottiRequest) : Promise<Prodotto[]>{
-        return http.post(Global.ENDPOINT+"/prodotti/lista", { body: request }) as Promise<Prodotto[]>
+    public get(request: ProdottiRequest): Promise<Prodotto[]> {
+        return http.post(Global.ENDPOINT + "/prodotti/lista", request) as Promise<Prodotto[]>
     }
 
-    public import(){
-       
+    public import() {
+
     }
 
-    public create(prodotto: ProdottoRequest) : Promise<Prodotto>{
-        return http.post(Global.ENDPOINT+"/prodotti/nuovo", { body: prodotto }) as Promise<Prodotto>
+    public create(prodotto: ProdottoRequest): Promise<Prodotto> {
+        return http.post(Global.ENDPOINT + "/prodotti/nuovo", prodotto) as Promise<Prodotto>
     }
 
-    public update(prodotto: ProdottoRequest) : Promise<Prodotto>{
-        return http.post(Global.ENDPOINT+"/prodotti/modifica", { body: prodotto }) as Promise<Prodotto>
+    public update(prodotto: ProdottoRequest): Promise<Prodotto> {
+        return http.post(Global.ENDPOINT + "/prodotti/modifica", prodotto) as Promise<Prodotto>
     }
 
-    public delete(prodotto: ProdottoRequest) : Promise<Prodotto>{
-        return http.post(Global.ENDPOINT+"/prodotti/elimina", { body: prodotto }) as Promise<Prodotto>
+    public delete(prodotto: ProdottoRequest): Promise<Prodotto> {
+        return http.post(Global.ENDPOINT + "/prodotti/elimina", prodotto) as Promise<Prodotto>
     }
 }

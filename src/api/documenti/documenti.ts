@@ -31,28 +31,28 @@ export class Documenti {
     private getApiForType(type: string) {
         return {
             get(request: DocumentiRequest) {
-                return http.post(Global.ENDPOINT + "/" + type + "/lista", { body: request }) as Promise<DocListaResponse>
+                return http.post(Global.ENDPOINT + "/" + type + "/lista", request) as Promise<DocListaResponse>
             },
             details(request: { id: string, token: string }) {
-                return http.post(Global.ENDPOINT + "/" + type + "/dettagli", { body: request }) as Promise<DocListaResponse>
+                return http.post(Global.ENDPOINT + "/" + type + "/dettagli", request) as Promise<DocListaResponse>
             },
             create(request: Documento) {
-                return http.post(Global.ENDPOINT + "/" + type + "/nuovo", { body: request }) as Promise<{ success: boolean, new_id: number, token: string }>
+                return http.post(Global.ENDPOINT + "/" + type + "/nuovo", request) as Promise<{ success: boolean, new_id: number, token: string }>
             },
             update(request: Documento) {
-                return http.post(Global.ENDPOINT + "/" + type + "/modifica", { body: request }) as Promise<{ success: boolean }>
+                return http.post(Global.ENDPOINT + "/" + type + "/modifica", request) as Promise<{ success: boolean }>
             },
             delete(request: { id: string, token: string }) {
-                return http.post(Global.ENDPOINT + "/" + type + "/elimina", { body: request }) as Promise<{ success: boolean }>
+                return http.post(Global.ENDPOINT + "/" + type + "/elimina", request) as Promise<{ success: boolean }>
             },
             info(request: { anno: number }) {
-                return http.post(Global.ENDPOINT + "/" + type + "/info", { body: request }) as Promise<DocInfoResponse>
+                return http.post(Global.ENDPOINT + "/" + type + "/info", request) as Promise<DocInfoResponse>
             },
             infoMail(request: { id: string, token: string }) {
-                return http.post(Global.ENDPOINT + "/" + type + "/infomail", { body: request }) as Promise<DocInfomailResponse>
+                return http.post(Global.ENDPOINT + "/" + type + "/infomail", request) as Promise<DocInfomailResponse>
             },
             sendMail(request: InviaMailRequest) {
-                return http.post(Global.ENDPOINT + "/" + type + "/inviamail", { body: request }) as Promise<{ success: boolean }>
+                return http.post(Global.ENDPOINT + "/" + type + "/inviamail", request) as Promise<{ success: boolean }>
             }
         }
     }
