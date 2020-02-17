@@ -1,6 +1,6 @@
 {
   "name": "@addo/fatture-in-cloud.api",
-  "version": "1.0.1",
+  "version": "1.0.4",
   "description": "Wrapper for FattureInCloud services",
   "main": "index.js",
   "scripts": {
@@ -9,8 +9,7 @@
   "author": "Addo",
   "license": "ISC",
   "dependencies": {
-    "@types/request-promise": "^4.1.45",
-    "request-promise": "^4.2.5"
+    "axios": "^0.19.2"
   },
   "devDependencies": {},
   "repository": {
