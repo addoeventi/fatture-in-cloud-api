@@ -1,5 +1,5 @@
 {
-  "name": "fatture-in-cloud.api",
+  "name": "@addo/fatture-in-cloud.api",
   "version": "1.0.0",
   "description": "Wrapper for FattureInCloud services",
   "main": "index.js",
@@ -11,5 +11,18 @@
   "dependencies": {
     "@types/request-promise": "^4.1.45",
     "request-promise": "^4.2.5"
-  }
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/addoeventi/fatture-in-cloud-api.git"
+  },
+  "keywords": [
+    "fattureInCloud",
+    "fatturazione"
+  ],
+  "bugs": {
+    "url": "https://github.com/addoeventi/fatture-in-cloud-api/issues"
+  },
+  "homepage": "https://github.com/addoeventi/fatture-in-cloud-api#readme"
 }
