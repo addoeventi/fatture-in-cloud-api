@@ -1,18 +1,22 @@
 {
   "name": "@addo/fatture-in-cloud.api",
-  "version": "1.0.4",
+  "version": "1.0.7",
   "description": "Wrapper for FattureInCloud services",
-  "main": "./dist/index.js",
-  "types": "./dist/index.d.ts",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "files": ["lib/**/*"],
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc"
   },
   "author": "Addo",
   "license": "ISC",
   "dependencies": {
     "axios": "^0.19.2"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "typescript": "^3.7.5"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/addoeventi/fatture-in-cloud-api.git"
