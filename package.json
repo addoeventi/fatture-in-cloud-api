@@ -9,7 +9,8 @@
   ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "tsc"
+    "build": "tsc",
+    "publish": "git commit --am \"edit\" && git push origin master && npm run build && npm version patch && npm publish"
   },
   "author": "Addo",
   "license": "ISC",
