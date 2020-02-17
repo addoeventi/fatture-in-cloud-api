@@ -1,8 +1,8 @@
 import { BasicRequest } from "../../../request/basic-request";
 
 export class DocumentiRequest implements BasicRequest {
-    public appId: string;
-    public appKey: string;
+    public appId?: string;
+    public appKey?: string;
     public anno: string;
     public data_inizio: string;
     public data_fine: string;

@@ -1,15 +1,16 @@
 import http from "axios";
 import { Global } from "../../global";
 import { DocumentiRequest } from "./request/documenti-request";
-import { Documento } from "../../models/documento";
+import { DocumentoRequest } from "../documenti/request/documento-request";
 import { DocInfomailResponse } from "./response/doc-infomail-response";
 import { InviaMailRequest } from "./request/inviamail-request";
 import { DocListaResponse } from "./response/doc-lista-response";
 import { DocInfoResponse } from "./response/doc-info-response";
 
 export class Documenti {
+
     private appId: string;
-    private appkey: string;
+    private appKey: string;
 
     public fatture = this.getApiForType('fatture')
     public proforma = this.getApiForType('proforma')
@@ -23,35 +24,50 @@ export class Documenti {
 
     constructor(appId: string, appKey: string) {
         this.appId = appId;
-        this.appkey = appKey;
+        this.appKey = appKey;
     }
 
-
-
     private getApiForType(type: string) {
+        let self = this;
         return {
             get(request: DocumentiRequest) {
+                request.appId = request.appId || self.appId;
+                request.appKey = request.appKey || self.appKey;
                 return http.post(Global.ENDPOINT + "/" + type + "/lista", request) as Promise<DocListaResponse>
             },
-            details(request: { id: string, token: string }) {
+            details(request: { appId: string, appKey: string, id: string, token: string }) {
+                request.appId = request.appId || self.appId;
+                request.appKey = request.appKey || self.appKey;
                 return http.post(Global.ENDPOINT + "/" + type + "/dettagli", request) as Promise<DocListaResponse>
             },
-            create(request: Documento) {
+            create(request: DocumentoRequest) {
+                request.appId = request.appId || self.appId;
+                request.appKey = request.appKey || self.appKey;
                 return http.post(Global.ENDPOINT + "/" + type + "/nuovo", request) as Promise<{ success: boolean, new_id: number, token: string }>
             },
-            update(request: Documento) {
+            update(request: DocumentoRequest) {
+                request.appId = request.appId || self.appId;
+                request.appKey = request.appKey || self.appKey;
                 return http.post(Global.ENDPOINT + "/" + type + "/modifica", request) as Promise<{ success: boolean }>
             },
-            delete(request: { id: string, token: string }) {
+            delete(request: { appId: string, appKey: string, id: string, token: string }) {
+                request.appId = request.appId || self.appId;
+                request.appKey = request.appKey || self.appKey;
                 return http.post(Global.ENDPOINT + "/" + type + "/elimina", request) as Promise<{ success: boolean }>
             },
-            info(request: { anno: number }) {
+            info(request: { appId: string, appKey: string, anno: number }) {
+                request.appId = request.appId || self.appId;
+                request.appKey = request.appKey || self.appKey;
                 return http.post(Global.ENDPOINT + "/" + type + "/info", request) as Promise<DocInfoResponse>
             },
-            infoMail(request: { id: string, token: string }) {
+            infoMail(request: { appId: string, appKey: string, id: string, token: string }) {
+                request.appId = request.appId || self.appId;
+                request.appKey = request.appKey || self.appKey;
                 return http.post(Global.ENDPOINT + "/" + type + "/infomail", request) as Promise<DocInfomailResponse>
             },
             sendMail(request: InviaMailRequest) {
+                request.appId = request.appId || self.appId;
+                request.appKey = request.appKey || self.appKey;
                 return http.post(Global.ENDPOINT + "/" + type + "/inviamail", request) as Promise<{ success: boolean }>
             }
         }

@@ -1,4 +1,4 @@
 export interface BasicRequest {
-    appId: string;
-    appKey: string;
+    appId?: string;
+    appKey?: string;
 }
