@@ -1,3 +1,5 @@
+import { IssuedDocumentPaymentsListItemPaymentTerms, IssuedDocumentStatus } from "@fattureincloud/fattureincloud-ts-sdk";
+
 export class Documento {
     id: string; // Identificativo univoco del documento,
     token: string; // Identificativo permanente del documento (rimane lo stesso anche a seguito di modiifche),
@@ -18,6 +20,8 @@ export class Documento {
     data: Date; // Data di emissione del documento,
     prossima_scadenza: Date; // [Non presente in preventivi e ddt] Indica la scadenza del prossimo pagamento (vale 00/00/0000 nel caso in cui tutti i pagamenti siano saldati),
     valuta: string; // Valuta del documento e degli importi indicati,
+    valuta_rate?: string;
+    valuta_simbolo?: string;
     valuta_cambio: number; // Tasso di cambio EUR/{valuta},
     prezzi_ivati: boolean; // Specifica se i prezzi da utilizzare per il calcolo del totale sono quelli netti, oppure quello lordi, comprensivi di iva,
     importo_netto: number; // Importo netto del documento (competenze),
@@ -68,6 +72,7 @@ export class Documento {
     link_allegato: string; // [Solo se è presente un allegato] Link al file allegato,
     bloccato?: boolean; // Indica se il documento è bloccato (e di conseguenza non può essere modificato o eliminato),
     PA?: boolean; // [Solo per fatture e ndc elettroniche, vale sempre "true"] Indica che il documento è nel formato FatturaPA,
+    PA_pec?: string; 
     PA_tipo_cliente: string; // [Solo se PA=true] Indica la tipologia del cliente: Pubblica Amministrazione ("PA") oppure privato ("B2B") = ['PA' o 'B2B'],
     PA_tipo: string; // [Solo se PA=true] Tipo di documento a cui fa seguito la fattura/ndc in questione = ['ordine' o 'convenzione' o 'contratto' o 'nessuno'],
     PA_numero: string; // [Solo se PA=true] Numero del documento a cui fa seguito la fattura/ndc in questione,
@@ -83,6 +88,7 @@ export class Documento {
     PA_ts?: boolean; // [Solo se PA=true] Indica che la fattura/ndc elettronica è stata inviata tramite il servizio FEPA TeamSystem,
     PA_ts_stato: string; // [Solo se PA_ts=true] Stato di invio della fattura/ndc,
     split_payment?: boolean; // [Solo per fatture, ndc e proforma NON elettroniche, vale sempre "true"] Indica che il documento applica lo split payment
+    liguaggio?: { nome: string; codice: string; };
 }
 
 export class DocArticolo {
@@ -111,4 +117,6 @@ export class DocPagamento {
     importo: number; // Importo del pagamento,
     metodo: string; // Conto di saldo = ['not' o 'rev' o il nome del conto] ('not' indica che non è stato saldato, 'rev' che è stato stornato),
     data_saldo: Date; // Data del saldo dell'importo indicato (se avvenuto)
+    stato: IssuedDocumentStatus;
+    termini_di_pagamento: IssuedDocumentPaymentsListItemPaymentTerms
 }

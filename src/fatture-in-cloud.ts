@@ -2,12 +2,12 @@ import { Richiesta } from "./api/richiesta/richiesta";
 import { Anagrafica } from "./api/anagrafica/anagrafica";
 import { Prodotti } from "./api/prodotti/prodotti";
 import { Documenti } from "./api/documenti/documenti";
+import { Configuration } from "@fattureincloud/fattureincloud-ts-sdk";
 
 export class FattureInCloud {
 
-    private appId: string;
-    private appKey: string;
-
+    private apiConfig: Configuration;
+    
     public richiesta: Richiesta;
     public anagrafica: Anagrafica;
     public prodotti: Prodotti;
@@ -18,15 +18,12 @@ export class FattureInCloud {
     // public mail: Mail;
     // public info: Info;
 
-    constructor(appId: string, appKey: string) {
-        
-        this.appId = appId;
-        this.appKey = appKey;
-        
-        this.richiesta = new Richiesta(appId, appKey);
-        this.anagrafica = new Anagrafica(appId, appKey);
-        this.prodotti = new Prodotti(appId, appKey);
-        this.documenti = new Documenti(appId, appKey);
+    constructor(config: Configuration) {
+        this.apiConfig = config;
+        this.richiesta = new Richiesta(this.apiConfig);
+        this.anagrafica = new Anagrafica(this.apiConfig);
+        this.prodotti = new Prodotti(this.apiConfig);
+        this.documenti = new Documenti(this.apiConfig);
         // this.acquisti = new Acquisti(appId, appKey);
         // this.corrispettivi = new Corrispettivi(appId, appKey);
         // this.magazzino = new Magazzino(appId, appKey);

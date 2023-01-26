@@ -6,16 +6,16 @@ import { FornitoreRequest } from "./fornitori/fornitore-request";
 import { Global } from "../../global";
 import { Fornitore } from "../../models/fornitore";
 import { Cliente } from "../../models/cliente";
+import { Configuration } from "@fattureincloud/fattureincloud-ts-sdk";
 
 export class Anagrafica {
 
-    private appId: string;
-    private appkey: string;
+    private config: Configuration;
 
-    constructor(appId: string, appKey: string) {
-        this.appId = appId;
-        this.appkey = appKey;
+    constructor(config: Configuration) {
+        this.config = config;
     }
+
 
     public clienti = {
         get(filter: ClientiRequest) {
